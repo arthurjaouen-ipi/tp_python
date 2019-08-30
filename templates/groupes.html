@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Groupes - TP Python</title>
+        <style>
+            .groupe{ border: 1px solid orange; border-radius: 5px; margin-bottom: 15px; }
+            .commentaire{ border: 1px solid blue; border-radius: 5px; margin-bottom: 15px; }
+        </style>
+    </head>
+
+    <body>
+        {% extends "template.html" %}
+        {% block content %}
+
+        <div class='container' style='padding-top: 30px'>
+            <div class='row' style='margin-bottom: 30px'>
+                <div class='col'>
+                    <h1>Groupes</h1>
+                </div>
+            </div>
+
+            <div class='row' style='margin-bottom: 30px'>
+                <div class='col-12'>
+                    <form class='form-inline' action='' method='GET'>
+                        <label for='search' style='margin-right: 5px'>Rechercher un groupe</label>
+                        <input class='form-control' style='margin-right: 5px' id='search' name='search' type='text' {% if search %}value='{{ search }}'{% endif %}>
+                        <input class='btn btn-outline-success' type='submit' value='Rechercher'>
+                    </form>
+                </div>
+            </div>  
+            
+            <div class='row groupes'>
+
+                {% for idgroupe, nom, description in groupes %}
+
+                    <div class='col-12 groupe'>
+                        <p>{{ nom }}</p>
+                        <p>{{ description }}</p>
+                        
+                        <div class='row commentaires'>
+                            
+                            {% for auteur, commentaire, idgroupe_associe in commentaires %}
+
+                                {% if idgroupe_associe == idgroupe %}
+
+                                    <div class='col-12 commentaire'>
+                                        <p style='font-style: italic;'>{{ auteur }} dit :</p>
+                                        <p>{{ commentaire }}</p>
+                                    </div>
+
+                                {% endif %}
+
+                            {% endfor %}
+
+                        </div>
+                        <form class='form-inline' action='ajoutcommentaire' method='POST'>
+                            <div class="form-group">
+                                <label for='auteur' style='margin-right: 5px'>Auteur</label>
+                                <input class='form-control' style='margin-right: 5px' id='auteur' name='auteur' type='text'>
+                            </div>
+
+                            <div class="form-group">
+                                <label for='commentaire' style='margin-right: 5px'>Commentaire</label>
+                                <textarea class='form-control' style='margin-right: 5px' id='commentaire' name='commentaire'></textarea> 
+                            </div>
+
+                            <div class="form-group">
+                                <input type='hidden' id='groupe' name='groupe' value='{{ idgroupe }}'>
+                                <input class='btn btn-outline-success' type='submit' value='Envoyer'>
+                            </div>
+                        </form>
+                    </div>
+
+                {% endfor %}
+                
+            </div>
+        </div>
+
+        {% endblock %}
+    </body>
+</html>

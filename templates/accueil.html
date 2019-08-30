@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Accueil - TP Python</title>
+    </head>
+
+    <body>
+        {% extends "template.html" %}
+        {% block content %}
+
+        <div class='container' style='padding-top: 30px'>
+            <div class='row' style='margin-bottom: 30px'>
+                <div class='col'>
+                    <h1>Le Rock</h1>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='col'>
+                    <p>Le rock est un genre musical apparu dans les années 1950 aux États-Unis et qui s'est développé en différents sous-genres à partir des années 1960, notamment aux États-Unis et au Royaume-Uni. Il prend ses racines dans le rock 'n' roll des années 1940 et 1950, lui-même grandement influencé par le rhythm and blues et la country.
+                    Le rock a également incorporé des éléments provenant d'autres genres dont la folk, le blues, le jazz et la musique classique. Il est caractérisé par une mélodie vocale dominante, souvent accompagnée par une ou plusieurs guitares électriques, une guitare basse et une batterie ; il peut également être accompagné de synthétiseurs/piano, de cuivres ou d'autres instruments.
+                    Une chanson de rock comprend généralement quatre pulsations par mesure et une structure avec couplets et refrain.</p>
+                </div>
+            </div>
+        </div>
+
+        {% endblock %}
+    </body>
+</html>
